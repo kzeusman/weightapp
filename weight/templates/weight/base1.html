@@ -1,0 +1,108 @@
+{% load static %}
+
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<link rel="icon" type="image/png"  href="{% static 'todo/logo.png' %}">
+	<title>Weight App</title>
+	<!-- CSS only -->
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-warning">
+<div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}">
+         
+        <span>The Weight App</span>
+    </a>
+	 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	</button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+{% if user.is_authenticated%}
+
+Logged in as {{ user.username }}
+
+	<ul class="navbar-nav mr-auto">
+
+		<li class="nav-item {{ currentweights }}">
+			<a class='nav-link' href="{% url 'currentweights' %}">Current</a>
+		</li>
+		<li class="nav-item {{ createweight  }}">
+			<a class='nav-link' href="{% url 'createweight' %}">Create</a>
+		</li>
+	</ul>
+{% endif %}
+<ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="#" onclick="$('#signOutBtn').click()" class="nav-link">Logout</a>
+                    <form style='display: none;' method="POST" action="{% url 'logoutuser' %}">
+                        {% csrf_token %}
+                        <button id="signOutBtn" type="submit">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signupuser' %}">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'loginuser' %}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+</nav>
+
+<div class="container">
+{% block content %}{% endblock %}
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+<!-- <a href="{% url 'createweight' %}">Create</a>
+<a href="{% url 'currentweights' %}">Current</a>
+<a href="{% url 'completedweights' %}">Completed</a>
+ -->
+
+<!-- <form action="{% url 'logoutuser' %}" method="POST">
+	{% csrf_token %}
+	<button type="submit">Logout</button>
+</form>
+
+
+
+
+
+
+<div class="container">
+
+	<a href="{% url 'signupuser' %}">Sign Up</a>
+	<a href="{% url 'loginuser' %}">Login</a>
+
+</div>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+{% endif %}
+
+<br>
+<br>
+
+
+
+
+{% block content %}{% endblock %}
+</body>
+</html> -->

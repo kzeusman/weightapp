@@ -1,0 +1,18 @@
+{% extends 'weight/base.html' %}
+
+{% block content %}
+
+Completed
+
+<ul>
+	{%  for weight in weights  %}
+
+<li>
+	<a href="{% url 'viewweights' weight.id  %}">
+	{%  if weight.important %}<b>{%  endif %}{{ weight.title }} {{ weight.created }}{%  if weight.important %}</b>{%  endif %}{%  if weight.memo %} -- {{ weight.memo }}{%  endif  %}
+	{{ weight.datecompletes|date:'M j Y H:i' }}
+
+</li>
+	{%  endfor  %}
+</ul>
+{% endblock %}

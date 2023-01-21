@@ -1,0 +1,18 @@
+{% extends 'weight/base.html' %}
+
+{% block content %}
+
+Current todos<br> 
+
+---------Date------Weight---Memo 
+
+<ul>
+	
+	{%  for weight in weights  %}
+
+<li>
+	<a href="{% url 'viewweights' weight.id  %}">
+	<p><h6 class="ml-2 mt-2" id="info-text">{%  if weight.important %}<b>{%  endif %} {{ weight.created |date:'M j Y'}} -- {{ weight.weight }} {%  if weight.important %}</b>{%  endif %}{%  if weight.memo %} -- {{ weight.memo }}{%  endif  %}</h6></p></li>
+	{%  endfor  %}</div>
+</ul>
+{% endblock %}

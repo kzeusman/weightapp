@@ -1,0 +1,30 @@
+{% extends 'weight/base.html' %}
+
+{% block content %}
+
+{{ error }}
+
+{{ weight.title }}
+
+<form method="POST">
+	{% csrf_token %}
+	{{  form.as_p  }}
+	<button type="Save">Edit</button>
+
+</form>	
+
+<form method="POST" action="{% url 'completeweights' weight.id %}">
+	{% csrf_token %}
+	
+	<button type="Save">Complete</button>
+
+</form>	
+
+<form method="POST" action="{% url 'deleteweights' weight.id %}">
+	{% csrf_token %}
+	
+	<button type="Save">delete</button>
+
+</form>
+
+{% endblock %}
